@@ -14,12 +14,11 @@ public class WaveSpawner : MonoBehaviour
     private int waveIndex = 0;
      void Update()
     {
-        if (countdown <= 0f) 
-        {           
-                StartCoroutine(SpawnWave());
-                countdown = timeBetweenWaves;
-
+        if (countdown <= 0f)
+        {
+            StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
+            waveIndex++; // increment waveIndex
         }
         countdown -= Time.deltaTime;
     }
@@ -29,7 +28,7 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < waveIndex; i++)
         {
             SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
     }
     void SpawnEnemy()
