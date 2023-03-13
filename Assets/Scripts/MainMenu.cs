@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    private void Update()
+    public void Game()
     {
-        
+        SceneManager.LoadScene("LevelOne");
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
