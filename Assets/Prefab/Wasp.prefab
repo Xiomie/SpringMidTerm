@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 5360923985171281792}
   - component: {fileID: 5360923985171281795}
   - component: {fileID: 5360923985171281794}
+  - component: {fileID: -8418511838332850499}
   m_Layer: 0
   m_Name: Wasp
   m_TagString: AirEnemy
@@ -394,6 +395,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
+--- !u!114 &-8418511838332850499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360923985171281805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e832a922999c546ab6e08fea8267f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  fireRate: 1
+  range: 15
+  health: 100
+  turnSpeed: 10
+  PartToRotate: {fileID: 5360923985171281799}
+  turretTag: Turret
+  bulletPrefab: {fileID: 1373342316912631647, guid: ba8b068ec4dbf5f41ab40d3aaafa5198, type: 3}
+  firePoint: {fileID: 5360923985171281799}
 --- !u!1 &6706870037904240104
 GameObject:
   m_ObjectHideFlags: 0

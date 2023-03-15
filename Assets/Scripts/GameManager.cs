@@ -23,18 +23,19 @@ public class GameManager : MonoBehaviour
 
 		if (Player.Lives <= 0)
 		{
-			EndGame();
+			SceneManager.LoadScene("DeathScreen");
 		}
+
 	}
 
 	void EndGame()
 	{
-		
+		SceneManager.LoadScene("DeathScreen");
 	}
 
 	public void WinLevel()
 	{
 		GameIsOver = true;
-		completeLevelUI.SetActive(true);
+		SceneManager.LoadScene("VictoryScreen");
 	}
 }

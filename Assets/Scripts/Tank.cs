@@ -71,6 +71,8 @@ public class Tank : MonoBehaviour
             fireCountdown = 1f / fireRate;
         }
         fireCountdown -= Time.deltaTime;
+
+        GetComponent<AudioSource>().Play();
     }
     
     void Shoot()
@@ -81,6 +83,8 @@ public class Tank : MonoBehaviour
 
         if (bullet != null)
             bullet.Seek(target);
+
+        GetComponent<AudioSource>().Play();
     }
 
     void OnDrawGizmosSelected()

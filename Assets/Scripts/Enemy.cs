@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
+
     }
     public void Slow(float pct)
     {

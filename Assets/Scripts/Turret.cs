@@ -87,6 +87,9 @@ public class Turret : MonoBehaviour
 
         if (bullet != null)
             bullet.Seek(target);
+
+        GetComponent<AudioSource>().Play();
+
     }
 
     void OnDrawGizmosSelected()
