@@ -124,8 +124,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8882224203470684119}
-  - component: {fileID: 8882224203470684116}
   - component: {fileID: 8757412446120383490}
+  - component: {fileID: -7824474395439099800}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -150,26 +150,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8882224203470684116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8882224203470684117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb167bc0fbe66b841b56af1bf2495f1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  fireRate: 1
-  range: 40
-  turnSpeed: 10
-  PartToRotate: {fileID: 8882224203995300652}
-  enemyTag: Enemy
-  bulletPrefab: {fileID: 1373342316912631647, guid: 121979bf9cd468e40a347b70d4f10335, type: 3}
-  firePoint: {fileID: 8882224202316127981}
 --- !u!65 &8757412446120383490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,6 +163,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7824474395439099800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882224203470684117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3127dbfcc5cd01e43bb66e634d9c5b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  fireRate: 0.5
+  range: 30
+  turnSpeed: 10
+  PartToRotate: {fileID: 8882224203995300652}
+  enemyTag: Enemy
+  bulletPrefab: {fileID: 1373342316912631647, guid: 121979bf9cd468e40a347b70d4f10335, type: 3}
+  firePoint: {fileID: 8882224202316127981}
 --- !u!1 &8882224203622393624
 GameObject:
   m_ObjectHideFlags: 0

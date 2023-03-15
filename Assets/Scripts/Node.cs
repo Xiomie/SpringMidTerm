@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class Node : MonoBehaviour
@@ -11,5 +12,10 @@ public class Node : MonoBehaviour
         {
             points[i] = transform.GetChild(i);
         }
+    }
+
+    public static implicit operator Node(Build v)
+    {
+        throw new NotImplementedException();
     }
 }

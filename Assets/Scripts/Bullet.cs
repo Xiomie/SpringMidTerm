@@ -7,32 +7,89 @@ public class Bullet : MonoBehaviour
     private Transform target;
     float speed = 70f;
 
-    public void Seek (Transform _target)
-    {
-        target = _target;
-    }
- 
-    // Update is called once per frame
-    void Update()
-    {
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }    
+	public int damage = 50;
 
-        Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
-        if (dir.magnitude <= distanceThisFrame)
-        {
-            HitTarget();
-            return;
-        }
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-    } 
+	public float explosionRadius = 0f;
+	public GameObject impactEffect;
 
-    void HitTarget()
+	public void Seek(Transform _target)
+	{
+		target = _target;
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+		if (target == null)
+		{
+			Destroy(gameObject);
+			return;
+		}
+
+		Vector3 dir = target.position - transform.position;
+		float distanceThisFrame = speed * Time.deltaTime;
+
+		if (dir.magnitude <= distanceThisFrame)
+		{
+			HitTarget();
+			return;
+		}
+
+		transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+		transform.LookAt(target);
+
+	}
+
+	void HitTarget()
+{
+    if (impactEffect == null)
     {
-        Debug.Log("Ht");
+        Debug.LogError("Impact effect is not assigned.");
+        return;
     }
+
+    GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
+    Destroy(effectIns, 5f);
+
+    if (explosionRadius > 0f)
+    {
+        Explode();
+    }
+    else if (target != null)
+    {
+        Damage(target);
+        Destroy(gameObject);
+    }
+}
+
+
+	void Explode()
+	{
+		Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+		foreach (Collider collider in colliders)
+		{
+			if (collider.tag == "Enemy" || collider.tag == "AirEnemy")
+			{
+				Damage(collider.transform);
+			}
+		}
+	}
+
+
+	void Damage(Transform enemy)
+	{
+		Enemy e = enemy.GetComponent<Enemy>();
+
+		if (e != null)
+		{
+			e.TakeDamage(damage);
+		}
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, explosionRadius);
+	}
 }

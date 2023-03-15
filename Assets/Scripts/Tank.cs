@@ -2,44 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Tank : MonoBehaviour
 {
     public Transform target;
 
+
+  
     [Header("Attributes")]
     public float fireRate = 1f;
     private float fireCountdown = 0f;
     public float range = 15f;
-    public int maxHealth = 100;
-    private int currentHealth;
+
 
     public float turnSpeed = 10f;
     public Transform PartToRotate;
     public string enemyTag = "Enemy";
-    public string airEnemyTag = "AirEnemy";
 
     public GameObject bulletPrefab;
     public Transform firePoint;
+  
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        GameObject[] airEnemies = GameObject.FindGameObjectsWithTag(airEnemyTag);
-        List<GameObject> targets = new List<GameObject>();
-        targets.AddRange(enemies);
-        targets.AddRange(airEnemies);
-
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in targets)
+        foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance && distanceToEnemy <= range)
@@ -58,7 +53,6 @@ public class Turret : MonoBehaviour
             target = null;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -78,11 +72,11 @@ public class Turret : MonoBehaviour
         }
         fireCountdown -= Time.deltaTime;
     }
-
+    
     void Shoot()
     {
         Debug.Log("Shoot");
-        GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGo = (GameObject)Instantiate (bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
         if (bullet != null)
@@ -90,25 +84,9 @@ public class Turret : MonoBehaviour
     }
 
     void OnDrawGizmosSelected()
-    {
+    { 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, range);
-
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
+       
     }
 }
-
